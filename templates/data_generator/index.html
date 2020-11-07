@@ -1,0 +1,23 @@
+{% extends 'data_generator/base.html' %}
+
+{% block content %}
+    <h1>Data schemas <a class="btn btn-primary" href="{% url 'data_generator:create_scheme' %}">New schema</a></h1>
+    <table class="table table bordered">
+    <thead>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Modified</th>
+    <th scope="col">Actions</th>
+    </thead>
+    <tbody>
+    {%  for schema in generated_schemes %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td><a href="{% url 'data_generator:detail' schema.pk %}">{{ schema.name }}</a></td>
+            <td>{{ schema.last_modified }}</td>
+            <td><a class="btn btn-link" href="#">Edit scheme</a><a class="btn btn-danger" href="#">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

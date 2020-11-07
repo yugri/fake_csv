@@ -1,0 +1,11 @@
+{% extends 'data_generator/base.html' %}
+{% block content %}
+
+    <h1>{{ schema.name }} <a class="btn btn-primary" href="#" role="button">Edit scheme</a></h1>
+    <ul class="list-group">
+    <li class="list-group-item">Delimiter: {{ schema.column_separator }}</li>
+    <li class="list-group-item">String character: {{ schema.string_character }}</li>
+    <li class="list-group-item">Last Modified: {{ schema.last_modified }}</li>
+    </ul>
+
+{% endblock content %}

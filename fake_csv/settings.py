@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'data_generator'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Setup the csv separator choices (Tab or Comma)
+SEPARATOR_CHOICES = [
+    (',', "Comma (,)"), (' ', "Tab ( )")
+]
+
+# Setup the string character choices (Single-quote or Double-quote)
+STRING_CHAR_CHOICES = [
+    ('\"', "Double-quote (\")"), ('\'', "Single-quote (')")
+]
+
+# Provide data types
+DATA_TYPES = [
+    ('full_name', "Full name"),
+    ('job', "Job"),
+    ('email', "Email"),
+    ('domain', "Domain name"),
+    ('phone', "Phone number"),
+    ('company', "Company name"),
+    ('text', "Text"),
+    ('integer', "Integer"),
+    ('address', "Address"),
+    ('date', "Date")
+]
