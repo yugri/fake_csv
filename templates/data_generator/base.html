@@ -10,9 +10,16 @@
 
     <title>Fake CSV Generator</title>
   </head>
-  <body>
+  <body class="bg-light">
     {% include 'data_generator/navigation.html' %}
-    <div class="container-fluid">
+    <div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-dark" role="alert">
+              {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}{% endblock %}
     </div>
 

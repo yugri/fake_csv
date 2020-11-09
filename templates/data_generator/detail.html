@@ -1,11 +1,23 @@
 {% extends 'data_generator/base.html' %}
 {% block content %}
 
-    <h1>{{ schema.name }} <a class="btn btn-primary" href="#" role="button">Edit scheme</a></h1>
-    <ul class="list-group">
+<h1>{{ schema.name }} <a class="btn btn-primary" href="{% url 'data_generator:update_scheme' schema.pk %}" role="button">Edit scheme</a></h1>
+<ul class="list-group">
     <li class="list-group-item">Delimiter: {{ schema.column_separator }}</li>
     <li class="list-group-item">String character: {{ schema.string_character }}</li>
     <li class="list-group-item">Last Modified: {{ schema.last_modified }}</li>
-    </ul>
+</ul>
+
+<h1>Schema columns</h1>
+<table class="table table bordered">
+    <tbody>
+    {%  for column in schema.column_set.all %}
+        <tr>
+            <td><a>{{ column.name }}</a></td>
+            <td>{{ column.order }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 {% endblock content %}
