@@ -1,0 +1,9 @@
+{% extends 'data_generator/base.html' %}
+{% block content %}
+    <form method="post">{% csrf_token %}
+    <div class="form-group">
+        <p>Are you sure want to delete "{{ object }}"?</p>
+        <input type="submit" class="btn btn-primary mb-2" value="Confirm">
+    </div>
+    </form>
+{% endblock %}

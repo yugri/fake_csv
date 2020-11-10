@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from data_generator.forms import SchemaModelForm
-from data_generator.models import Schema, Dataset
+from data_generator.models import Schema, Dataset, Column
 
 
 class SchemaCreateView(generic.CreateView):
@@ -20,8 +20,19 @@ class SchemaUpdateView(generic.UpdateView):
     success_url = reverse_lazy('data_generator:index')
 
     def get_object(self):
-        id_ = self.kwargs.get("pk")
-        return get_object_or_404(Schema, id=id_)
+        return get_object_or_404(Schema, id=self.kwargs.get("pk"))
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the columns
+        context['columns'] = Column.objects.filter(schema=self.kwargs.get("pk"))
+        return context
+
+
+class SchemaDeleteView(generic.DeleteView):
+    model = Schema
+    success_url = reverse_lazy('data_generator:index')
 
 
 class IndexView(generic.ListView):

@@ -1,8 +1,14 @@
 {% extends 'data_generator/base.html' %}
 
 {% block content %}
-
 <form method="post">{% csrf_token %}
+
+<div class="row">
+    <h3 class="col-md-10">Edit Schema</h3>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="name">Name</label>
@@ -29,36 +35,42 @@
         </select>
       </div>
   </div>
-{#  <div class="form-group">#}
-{#    <label for="inputAddress2">Address 2</label>#}
-{#    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">#}
-{#  </div>#}
-{#  <div class="form-row">#}
-{#    <div class="form-group col-md-6">#}
-{#      <label for="inputCity">City</label>#}
-{#      <input type="text" class="form-control" id="inputCity">#}
-{#    </div>#}
-{#    <div class="form-group col-md-4">#}
-{#      <label for="inputState">State</label>#}
-{#      <select id="inputState" class="form-control">#}
-{#        <option selected>Choose...</option>#}
-{#        <option>...</option>#}
-{#      </select>#}
-{#    </div>#}
-{#    <div class="form-group col-md-2">#}
-{#      <label for="inputZip">Zip</label>#}
-{#      <input type="text" class="form-control" id="inputZip">#}
-{#    </div>#}
-{#  </div>#}
-{#  <div class="form-group">#}
-{#    <div class="form-check">#}
-{#      <input class="form-check-input" type="checkbox" id="gridCheck">#}
-{#      <label class="form-check-label" for="gridCheck">#}
-{#        Check me out#}
-{#      </label>#}
-{#    </div>#}
-{#  </div>#}
-  <button type="submit" class="btn btn-primary">Update</button>
+
+{% if columns.count != 0 %}
+<h3>Schema columns</h3>
+{% for column in columns %}
+<div class="form-row schema-column-inputs">
+    <div class="form-group col-md-3">
+        <label for="inputName">Column name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Name" value="{{ column.name }}">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="inputType">Type</label>
+        <select id="inputType" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+    <div class="form-group col-md-1">
+        <label for="inputFrom">From</label>
+        <input type="text" class="form-control" id="inputFrom">
+    </div>
+    <div class="form-group col-md-1">
+        <label for="inputTo">To</label>
+        <input type="text" class="form-control" id="inputTo">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="inputOrder">Order</label>
+        <input type="text" class="form-control" id="inputOrder">
+    </div>
+    <div class="mb-2">
+        <a class="btn text-danger delete-button">Delete</a>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+<a class="btn btn-primary add-button">Add column</a>
+
 </form>
 
 {% endblock %}
